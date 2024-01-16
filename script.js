@@ -15,3 +15,7 @@ const divide = function(a, b) {
   // result to string, calculate length, use toFixed if length > display.
 	return a / b;
 };
+
+let num1;
+let operator;
+let num2;
