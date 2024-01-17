@@ -17,19 +17,19 @@ function updateDisplay(input) {
   display.textContent = `${displayValue}`;
 }
 
-const add = function(a, b) {
+function add(a, b) {
 	return a + b;
 };
 
-const subtract = function(a, b) {
+function subtract(a, b) {
 	return a - b;
 };
 
-const multiply = function(a, b) {
+function multiply(a, b) {
 	return a * b;
 };
 
-const divide = function(a, b) {
+function divide(a, b) {
   // TODO: round the result if more than display limit.
   // Algorithm: convert result to string,
   // calculate length, use toFixed if length > display.
@@ -40,7 +40,7 @@ let num1;
 let operator;
 let num2;
 
-const operate = function(num1, operator, num2) {
+function operate(num1, operator, num2) {
   switch (operator) {
     case "add":
       return add(num1, num2);
@@ -53,8 +53,5 @@ const operate = function(num1, operator, num2) {
       
     case "divide":
       return divide(num1, num2);
-      
-    default:
-      break;
   }
 };
