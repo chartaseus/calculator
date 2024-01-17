@@ -1,3 +1,22 @@
+const MAX_DIGIT = 12;
+
+const display = document.querySelector(".display");
+let displayValue = "";
+
+const numberButtons = document.querySelectorAll(".number");
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    updateDisplay(button.value);
+  });
+});
+
+function updateDisplay(input) {
+  if (displayValue.length <= MAX_DIGIT) {
+    displayValue += input;
+  }
+  display.textContent = `${displayValue}`;
+}
+
 const add = function(a, b) {
 	return a + b;
 };
@@ -11,8 +30,9 @@ const multiply = function(a, b) {
 };
 
 const divide = function(a, b) {
-  // TODO: round the result if more than display limit. Algorithm: convert
-  // result to string, calculate length, use toFixed if length > display.
+  // TODO: round the result if more than display limit.
+  // Algorithm: convert result to string,
+  // calculate length, use toFixed if length > display.
 	return a / b;
 };
 
