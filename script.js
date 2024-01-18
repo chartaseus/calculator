@@ -31,8 +31,29 @@ operatorButtons.forEach((button) => {
   });
 });
 
+let result = 0;
+const equalsButton = document.querySelector(".equals");
+equalsButton.addEventListener("click", () => {
+  // 1. Assign displayValue to num2 variable
+  // 2. Call operate()
+  // 3. Update display with operation result
+  // 4. Assign the result to num1 for next operation
+  //    (Will be used if user click operator button
+  //    but will be overwritten if user clicks
+  //    number button before operator button)
+  // 5. Reset `operator` and `num2` variable
+  num2 = parseFloat(displayValue);
+  displayValue = "";
+  result = operate(num1, operator, num2);
+  updateDisplay(result);
+  num1 = parseFloat(displayValue);
+  displayValue = "";
+  operator = "";
+  num2 = null;
+})
+
 function updateDisplay(input) {
-  if (displayValue.length <= MAX_DIGIT) {
+  if (displayValue.length <= MAX_DIGIT) { // when used for displaying result, can cause problem if result > display limit
     displayValue += input;
   }
   display.textContent = `${displayValue}`;
