@@ -10,6 +10,27 @@ numberButtons.forEach((button) => {
   });
 });
 
+const operatorButtons = document.querySelectorAll(".operator");
+
+// When one of the operator buttons is clicked,
+// do the following:
+// 1. Assign the button value to `operator` variable
+// 2. Assign the display value to `num1` variable
+// 3. Reset displayValue variable for num2 input
+// 4. If chain operation (e.g. 1 + 2 + ...):
+//    a. operate the previous pair of number
+//    b. use the result as num1 for this operation
+//    c. reset num2 variable
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    operator = button.value;
+    num1 = parseFloat(displayValue);
+    displayValue = "";
+    // TODO: if chain operation (user has stored
+    // a pair of number before -> num2 is not empty)
+  });
+});
+
 function updateDisplay(input) {
   if (displayValue.length <= MAX_DIGIT) {
     displayValue += input;
