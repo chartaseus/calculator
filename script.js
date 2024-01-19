@@ -23,17 +23,22 @@ const operatorButtons = document.querySelectorAll(".operator");
 //    c. reset num2 variable
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    operator = button.value;
-    num1 = parseFloat(displayValue);
-    displayValue = "";
-    // TODO: if chain operation (user has stored
-    // a pair of number before -> num2 is not empty)
+    // TODO: if chain operation
+    // if () {
+    //   calculate();
+    // } else {
+      operator = button.value;
+      num1 = parseFloat(displayValue);
+      displayValue = "";
+    // }
   });
 });
 
 let result = 0;
 const equalsButton = document.querySelector(".equals");
-equalsButton.addEventListener("click", () => {
+equalsButton.addEventListener("click", calculate)
+
+function calculate() {
   // 1. Assign displayValue to num2 variable
   // 2. Call operate()
   // 3. Update display with operation result
@@ -50,7 +55,7 @@ equalsButton.addEventListener("click", () => {
   displayValue = "";
   operator = "";
   num2 = null;
-})
+}
 
 function updateDisplay(input) {
   if (displayValue.length <= MAX_DIGIT) { // when used for displaying result, can cause problem if result > display limit
@@ -78,9 +83,9 @@ function divide(a, b) {
 	return a / b;
 };
 
-let num1;
-let operator;
-let num2;
+let num1 = null;
+let operator = "";
+let num2 = null;
 
 function operate(num1, operator, num2) {
   switch (operator) {
