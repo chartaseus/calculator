@@ -23,20 +23,22 @@ const operatorButtons = document.querySelectorAll(".operator");
 //    c. reset num2 variable
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    // TODO: if chain operation
-    // if () {
-    //   calculate();
-    // } else {
+    if (num1 !== null) {
+      calculate();
+    } else {
       operator = button.value;
       num1 = parseFloat(displayValue);
       displayValue = "";
-    // }
+    }
   });
 });
 
 let result = 0;
 const equalsButton = document.querySelector(".equals");
-equalsButton.addEventListener("click", calculate)
+equalsButton.addEventListener("click", () => {
+  calculate();
+  operator = "";
+})
 
 function calculate() {
   // 1. Assign displayValue to num2 variable
@@ -53,7 +55,6 @@ function calculate() {
   updateDisplay(result);
   num1 = parseFloat(displayValue);
   displayValue = "";
-  operator = "";
   num2 = null;
 }
 
