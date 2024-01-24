@@ -59,7 +59,7 @@ function calculate() {
 }
 
 function updateDisplay(input) {
-  if (displayValue.length <= MAX_DIGIT) { // when used for displaying result, can cause problem if result > display limit
+  if (displayValue.length <= MAX_DIGIT) {
     displayValue += input;
   }
   display.textContent = `${displayValue}`;
@@ -89,17 +89,31 @@ let operator = "";
 let num2 = null;
 
 function operate(num1, operator, num2) {
+  let operationResult;
+  
   switch (operator) {
     case "add":
-      return add(num1, num2);
+      operationResult = add(num1, num2);
       
     case "subtract":
-      return subtract(num1, num2);
+      operationResult = subtract(num1, num2);
       
     case "multiply":
-      return multiply(num1, num2);
+      operationResult = multiply(num1, num2);
       
     case "divide":
-      return divide(num1, num2);
+      operationResult = divide(num1, num2);
   }
-};
+
+  return roundToMaxDigit(operationResult);
+}
+
+function roundToMaxDigit(number) {
+  let stringResult = toString(number);
+  if (stringResult.length > MAX_DIGIT) {
+    return (number).toFixed(
+      (MAX_DIGIT - 1) - Math.round(number).toString().length
+    );
+  }
+  return number;
+}
