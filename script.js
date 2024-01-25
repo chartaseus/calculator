@@ -94,15 +94,19 @@ function operate(num1, operator, num2) {
   switch (operator) {
     case "add":
       operationResult = add(num1, num2);
+      break;
       
     case "subtract":
       operationResult = subtract(num1, num2);
+      break;
       
     case "multiply":
       operationResult = multiply(num1, num2);
+      break;
       
     case "divide":
       operationResult = divide(num1, num2);
+      break;
   }
 
   return roundToMaxDigit(operationResult);
