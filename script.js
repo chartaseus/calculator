@@ -113,7 +113,7 @@ function operate(num1, operator, num2) {
 }
 
 function roundToMaxDigit(number) {
-  let stringResult = toString(number);
+  let stringResult = number.toString();
   if (stringResult.length > MAX_DIGIT) {
     return (number).toFixed(
       (MAX_DIGIT - 1) - Math.round(number).toString().length
