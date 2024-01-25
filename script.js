@@ -7,6 +7,11 @@ const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     updateDisplay(button.value);
+    if (operator == "") {
+      num1 = parseFloat(displayValue);
+    } else {
+      num2 = parseFloat(displayValue);
+    }
   });
 });
 
@@ -23,13 +28,12 @@ const operatorButtons = document.querySelectorAll(".operator");
 //    c. reset num2 variable
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (num1 !== null) {
+    if (operator !== "" && num2 !== null) {
       calculate();
-    } else {
-      operator = button.value;
-      num1 = parseFloat(displayValue);
-      displayValue = "";
     }
+
+    operator = button.value;
+    displayValue = "";
   });
 });
 
@@ -49,12 +53,10 @@ function calculate() {
   //    but will be overwritten if user clicks
   //    number button before operator button)
   // 5. Reset `operator` and `num2` variable
-  num2 = parseFloat(displayValue);
   displayValue = "";
   result = operate(num1, operator, num2);
   updateDisplay(result);
   num1 = parseFloat(displayValue);
-  displayValue = "";
   num2 = null;
 }
 
