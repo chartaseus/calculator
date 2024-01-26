@@ -84,9 +84,6 @@ function multiply(a, b) {
 };
 
 function divide(a, b) {
-  // TODO: round the result if more than display limit.
-  // Algorithm: convert result to string,
-  // calculate length, use toFixed if length > display.
 	return a / b;
 };
 
@@ -120,10 +117,14 @@ function operate(num1, operator, num2) {
 
 function roundToMaxDigit(number) {
   let stringResult = number.toString();
+  let intLength = (Math.round(number)).toString().length;
   if (stringResult.length > MAX_DIGIT) {
-  return (number).toFixed(
-    (MAX_DIGIT - 1) - Math.round(number).toString().length
-  );
+    if (intLength > MAX_DIGIT) {
+      return number.toExponential(MAX_DIGIT - 6);
+    } else if (intLength == MAX_DIGIT) {
+      return Math.round(number);
+    }
+    return number.toFixed((MAX_DIGIT - 1) - intLength);
   }
   return number;
 }
