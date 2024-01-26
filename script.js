@@ -58,10 +58,14 @@ function calculate() {
   updateDisplay(result);
   num1 = parseFloat(displayValue);
   num2 = null;
+  
+  // To allow starting new operation
+  // without clicking the clear button
+  displayValue = "";
 }
 
 function updateDisplay(input) {
-  if (displayValue.length <= MAX_DIGIT) {
+  if (displayValue.length < MAX_DIGIT) {
     displayValue += input;
   }
   display.textContent = `${displayValue}`;
@@ -117,9 +121,9 @@ function operate(num1, operator, num2) {
 function roundToMaxDigit(number) {
   let stringResult = number.toString();
   if (stringResult.length > MAX_DIGIT) {
-    return (number).toFixed(
-      (MAX_DIGIT - 1) - Math.round(number).toString().length
-    );
+  return (number).toFixed(
+    (MAX_DIGIT - 1) - Math.round(number).toString().length
+  );
   }
   return number;
 }
