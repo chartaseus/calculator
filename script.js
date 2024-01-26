@@ -17,15 +17,11 @@ numberButtons.forEach((button) => {
 
 const operatorButtons = document.querySelectorAll(".operator");
 
-// When one of the operator buttons is clicked,
-// do the following:
+// When one of the operator buttons is clicked:
 // 1. Assign the button value to `operator` variable
-// 2. Assign the display value to `num1` variable
-// 3. Reset displayValue variable for num2 input
-// 4. If chain operation (e.g. 1 + 2 + ...):
-//    a. operate the previous pair of number
-//    b. use the result as num1 for this operation
-//    c. reset num2 variable
+// 2. Reset displayValue variable for num2 input
+// 3. If chain operation (e.g. 1 + 2 + ...):
+//    calculate the previous pair of number
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (operator !== "" && num2 !== null) {
@@ -41,6 +37,10 @@ let result = 0;
 const equalsButton = document.querySelector(".equals");
 equalsButton.addEventListener("click", () => {
   calculate();
+
+  // Reset `operator` value only if calculate() is called
+  // by the equals button,
+  // not by operator button on chain operation
   operator = "";
 });
 
@@ -56,16 +56,19 @@ clearButton.addEventListener("click", () => {
 })
 
 function calculate() {
-  // 1. Assign displayValue to num2 variable
-  // 2. Call operate()
-  // 3. Update display with operation result
-  // 4. Assign the result to num1 for next operation
+  // 1. Call operate()
+  // 2. Update display with operation result
+  // 3. Assign the result to `num1` for next operation
   //    (Will be used if user click operator button
   //    but will be overwritten if user clicks
   //    number button before operator button)
-  // 5. Reset `operator` and `num2` variable
-  displayValue = "";
+  // 4. Reset `num2` variable
   result = operate(num1, operator, num2);
+  
+  // So that the result appear on its own,
+  // not appended to the second operand (num2)
+  displayValue = "";
+
   updateDisplay(result);
   num1 = parseFloat(displayValue);
   num2 = null;
