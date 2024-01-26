@@ -42,6 +42,17 @@ const equalsButton = document.querySelector(".equals");
 equalsButton.addEventListener("click", () => {
   calculate();
   operator = "";
+});
+
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => {
+  if (!operator) {
+    num1 = null;
+  } else {
+    num2 = null;
+  }
+  displayValue = "";
+  display.textContent = "0";
 })
 
 function calculate() {
