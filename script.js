@@ -7,12 +7,16 @@ const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     updateDisplay(button.value);
-    if (operator == "") {
-      num1 = parseFloat(displayValue);
-    } else {
-      num2 = parseFloat(displayValue);
-    }
+    assignOperand();
   });
+});
+
+const backspaceButton = document.querySelector(".backspace");
+backspaceButton.addEventListener("click", () => {
+  let previousDisplayValue = displayValue;
+  displayValue = "";
+  updateDisplay(previousDisplayValue.slice(0, -1));
+  assignOperand();
 });
 
 const operatorButtons = document.querySelectorAll(".operator");
@@ -46,14 +50,18 @@ equalsButton.addEventListener("click", () => {
 
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
-  if (!operator) {
-    num1 = null;
-  } else {
-    num2 = null;
-  }
+  assignOperand(null);
   displayValue = "";
   display.textContent = "0";
-})
+});
+
+function assignOperand(number = parseFloat(displayValue)) {
+  if (!operator) {
+    num1 = number;
+  } else {
+    num2 = number;
+  }
+}
 
 function calculate() {
   // 1. Call operate()
