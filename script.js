@@ -90,7 +90,7 @@ function updateDisplay(input) {
   if (displayValue.length < MAX_DIGIT) {
     displayValue += input;
   }
-  display.textContent = `${displayValue}`;
+  display.textContent = `${displayValue || "0"}`;
 }
 
 function add(a, b) {
