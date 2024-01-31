@@ -50,7 +50,9 @@ equalsButton.addEventListener("click", () => {
 
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
-  assignOperand(null);
+  num1 = null;
+  num2 = null;
+  operator = "";
   displayValue = "";
   display.textContent = "0";
 });
