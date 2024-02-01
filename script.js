@@ -6,7 +6,9 @@ let displayValue = "";
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (displayValue.includes(".") && button.value == ".") {
+    if (
+      (displayValue.includes(".") && button.value == ".")
+      || (displayValue == "0" && button.value == "0")) {
       return;
     }
     updateDisplay(button.value);
@@ -97,7 +99,11 @@ function calculate() {
 
 function updateDisplay(input) {
   if (displayValue.length < MAX_DIGIT) {
-    displayValue += input;
+    if (displayValue == "0" && input != ".") {
+      displayValue = input;
+    } else {
+      displayValue += input;
+    }
   }
   display.textContent = `${displayValue || "0"}`;
 }
