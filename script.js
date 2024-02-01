@@ -6,6 +6,9 @@ let displayValue = "";
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (displayValue.includes(".") && button.value == ".") {
+      return;
+    }
     updateDisplay(button.value);
     assignOperand();
   });
