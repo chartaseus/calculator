@@ -40,6 +40,10 @@ operatorButtons.forEach((button) => {
 let result = 0;
 const equalsButton = document.querySelector(".equals");
 equalsButton.addEventListener("click", () => {
+  if (operator == "divide" && num2 === 0) {
+    alert("LOL this user's trying to divide by zero 🫵😆");
+    return;
+  }
   calculate();
 
   // Reset `operator` value only if calculate() is called
